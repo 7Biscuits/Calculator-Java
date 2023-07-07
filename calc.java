@@ -1,44 +1,64 @@
-import java.util.Scanner; 
+import java.util.Scanner;
 
-public class yeet {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+public class Main {
 
-        System.out.println("Enter the first number: ");
-        int num1 = sc.nextInt();
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Operations operations = new Operations();
 
-        System.out.println("Enter the second number: ");
-        int num2 = sc.nextInt();
+    System.out.println("CALCULATOR 🧑‍💻");
 
-        System.out.println("Enter the operator: ");
-        char operator = sc.next().charAt(0);
+    System.out.print("Enter number: ");
+    double num1 = sc.nextDouble();
 
+    System.out.print("Enter the operator: ");
+    char operation = sc.next().charAt(0);
 
-        int addition = num1 + num2; // for addition
-        int substraction = num1 - num2; // for substraction
-        int multiplication = num1 * num2; // for multiplication
-        int division = num1 / num2; // for division
+    while (operation != '=') {
+      System.out.print("Enter number: ");
+      double num2 = sc.nextDouble();
 
-
-
-        if (operator == '+')/* if operator is '+' we are printing the sum of the numbers entered*/ {
-          System.out.println("The sum of the numbers = " + addition);
-        }
-
-        else if (operator == '-')/* if operator is '-' we are printing the difference of the numbers entered*/ {
-          System.out.println("The difference of the numbers = " + substraction);
-        }
-
-        else if (operator == '*')/* if operator is '*' we are printing the product of the numbers entered*/ {
-          System.out.println("The multiplication of the numbers = " + multiplication);
-        }
-        else if (operator == '/')/* if operator is '/' we are doing division and printing the answer*/ {
-          System.out.println("The division of the numbers = " + division);
-        }
-
-        else
-        System.out.println("Invalid Input"); // we are printing "Invalid Input" if the operator is not valid
-
-
+      switch (operation) {
+        case '+':
+          num1 = operations.add(num1, num2);
+          break;
+        case '-':
+          num1 = operations.substract(num1, num2);
+          break;
+        case '*':
+          num1 = operations.multiply(num1, num2);
+          break;
+        case '/':
+          num1 = operations.divide(num1, num2);
+          break;
+        case '=':
+          break;
+        default:
+          System.out.println("Invalid Input");
+      }
+      
+      System.out.print("Enter the operator: ");
+      operation = sc.next().charAt(0);
     }
+    System.out.println("Result: " + num1);
+  }
+}
+
+class Operations {
+
+  public double add(double num1, double num2) {
+    return num1 + num2;
+  }
+
+  public double substract(double num1, double num2) {
+    return num1 - num2;
+  }
+
+  public double multiply(double num1, double num2) {
+    return num1 * num2;
+  }
+
+  public double divide(double num1, double num2) {
+    return num1 / num2;
+  }
 }
